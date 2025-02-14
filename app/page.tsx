@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import ValentinePrompt from "@/component/ValentinePromt";
 
-const ValentineEnvelope = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(false);
-
+const ValentineEnvelopeContent = () => {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const [storedName, setStoredName] = useState("");
@@ -20,7 +17,22 @@ const ValentineEnvelope = () => {
     }
   }, [name]);
 
- 
+  return <ValentineEnvelope storedName={storedName} />;
+};
+
+// Wrap in Suspense
+const ValentineEnvelopeWrapper = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ValentineEnvelopeContent />
+    </Suspense>
+  );
+};
+
+// Pass storedName as a prop to avoid useSearchParams inside ValentineEnvelope
+const ValentineEnvelope = ({ storedName }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-pink-200 to-red-200">
@@ -70,7 +82,6 @@ const ValentineEnvelope = () => {
           animate={{ rotateX: isOpen ? -180 : 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Top Flap */}
           <motion.div
             className="absolute top-0 left-0 right-0 h-1/2 bg-[#dc2625]/60 origin-bottom shadow-lg"
             style={{
@@ -103,7 +114,6 @@ const ValentineEnvelope = () => {
                 <span className="font-bold">Your Secret Admirer</span>
               </p>
 
-              {/* Show ValentinePrompt after reading the message */}
               <button
                 className="mt-4 px-6 py-2 bg-[#ef4444] text-white font-bold rounded-lg shadow-md hover:bg-[#ef4444]/50 transition"
                 onClick={() => setShowPrompt(true)}
@@ -115,10 +125,9 @@ const ValentineEnvelope = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* Show Yes/No Prompt After Clicking Continue */}
       <AnimatePresence>{showPrompt && <ValentinePrompt />}</AnimatePresence>
     </div>
   );
 };
 
-export default ValentineEnvelope;
+export default ValentineEnvelopeWrapper;
