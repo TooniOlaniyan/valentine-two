@@ -44,7 +44,7 @@ const ValentinePrompt = () => {
           : "Will you be my Valentine? ❤️"}
       </h2>
 
-      <div className="flex gap-6 mt-4">
+      <div className="flex gap-10 mt-4">
         {/* YES Button */}
         <button
           style={{ backgroundColor: '#A4B465' }}
