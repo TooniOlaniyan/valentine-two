@@ -47,7 +47,7 @@ const ValentinePrompt = () => {
       <div className="flex gap-6 mt-4">
         {/* YES Button */}
         <button
-          className="px-6 py-2 bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 transition"
+          className="px-6 py-2 bg-[#A4B465] text-white font-bold rounded-lg shadow-md hover:bg-[#A4B465]/50 transition"
           onClick={handleAccept}
         >
           Yes
@@ -55,7 +55,7 @@ const ValentinePrompt = () => {
 
         {/* NO Button (Moves when hovered/clicked) */}
         <motion.button
-          className="px-6 py-2 bg-red-500 text-white font-bold rounded-lg shadow-md hover:bg-red-600 transition"
+          className="px-6 py-2 bg-[#D91656] text-white font-bold rounded-lg shadow-md hover:bg-[#D91656]/50 transition"
           onMouseEnter={moveNoButton}
           onClick={moveNoButton}
           animate={{ x: noButtonPos.x, y: noButtonPos.y }}
