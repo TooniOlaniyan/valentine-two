@@ -104,9 +104,8 @@ const ValentineEnvelope = ({ storedName }: any) => {
                 My Dearest {storedName},
               </h2>
               <p className="text-gray-700">
-                You fill my heart with joy and love. Every moment with you is a
-                treasure, and I'm grateful for the beautiful connection we
-                share.
+                I'm so glad to have you in my life. Our time together is always
+                special, and I appreciate the strong bond we've formed.
               </p>
               <p className="text-gray-700 mt-4">
                 Forever Yours,
